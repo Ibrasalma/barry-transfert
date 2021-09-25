@@ -47,7 +47,7 @@
                         <td class="border px-4 py-2">{{ $payement->montant_versee}}</td>
                         <td class="border px-4 py-2">{{ $payement->total_versee}}</td>
                         <td class="border px-4 py-2">{{ $payement->reste}}</td>
-                        <td class="border px-4 py-2">{{ $payement->moyen_payement}}</td>
+                        <td class="border px-4 py-2">{{ $payement->moyen_versement}}</td>
                         <td class="border px-4 py-2"><img src="{{ URL::asset('/photos/depots/hohai.jpg') }}"></td>
                         <td class="border px-4 py-2">{{ $payement->detail}}</td>
                         <td class="border px-4 py-2">{{ $payement->created_at}}</td>

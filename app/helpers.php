@@ -16,3 +16,9 @@ function validateImage(){
 function validateEntry($entry){
     return htmlspecialchars($entry);
 }
+
+function getSevenDays(){ 
+    $date = strtotime(date('Y-m-d'));
+    $date = strtotime("-2 day", $date);
+    return date('Y-m-d',$date);
+}

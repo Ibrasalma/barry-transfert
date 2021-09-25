@@ -29,7 +29,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $versements = App\Models\Depot::whereDate('created_at' , [getSevenDays(), date('Y-m-d')])->groupBy('created_at');
+    return view('dashboard', ['versements' => $versements]);
 })->name('dashboard');
 
 
