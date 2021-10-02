@@ -10,7 +10,7 @@ use Livewire\WithFileUploads;
 class Versement extends Component
 {
     use WithFileUploads;
-    public $versements,$old_date, $versement_id, $old_picture, $les_depots, $depot_id , $montant, $moyen_payement, $photo, $created_at, $modelId, $detail;
+    public $versements,$old_date, $versement_id, $old_picture, $les_depots, $depot_id , $montant, $moyen_payement, $photo, $photo_name, $created_at, $modelId, $detail;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
     
@@ -56,15 +56,16 @@ class Versement extends Component
         ]);
 
         if(!empty($this->photo)){
-            $this->photo->storeAs('public/photos/versements', $this->photo->getClientOriginalName());
+            $this->photo_name = $this->photo->getClientOriginalName();
+            $this->photo->storeAs('public/photos/versements', $this->photo_name);
         }
 
         if(!empty($this->versement_id)){
             $old_values = AppVersement::findOrFail($this->versement_id);
             $this->old_date = $old_values->created_at;
-            $this->old_picture = $old_values->photo;
+            $this->old_picture = $old_values->notification;
         }
-        
+        //session()->flash('message', $this->old_picture);
         if(!empty(AppVersement::where('code', $this->depot_id)->get())){
             $montant_total_versee = AppVersement::where('code', $this->depot_id)->sum('montant_versee') + $this->montant;
         }else{
@@ -82,7 +83,7 @@ class Versement extends Component
                 'total_versee' => $montant_total_versee,
                 'reste' => $montant_restant,
                 'created_at' => !empty($this->old_date) ? $this->old_date : changeDateFormate($this->created_at,'yyyy-mm-dd'),
-                'notification' => !empty($this->old_picture) ? $this->old_picture : $this->photo->getClientOriginalName(),
+                'notification' => !empty($this->old_picture) ? $this->old_picture : $this->photo_name,
                 'moyen_versement' => $this->moyen_payement,
                 'detail' => $this->detail,
             ]);
@@ -97,7 +98,7 @@ class Versement extends Component
         }
         
         $this->closeModalPopover();
-        $this->resetCreateForm();
+        $this->resetCreateForm(); 
     }
 
     public function edit($id)
@@ -105,8 +106,8 @@ class Versement extends Component
         $versement = AppVersement::findOrFail($id);
         $this->versement_id = $id;
         $this->depot_id = $versement->code;
-        $this->montant = $versement->montant;
-        $this->moyen_payement = $versement->moyen_payement;
+        $this->montant = $versement->montant_versee;
+        $this->moyen_payement = $versement->moyen_versement;
         $this->created_at = $versement->created_at;
         $this->detail = $versement->detail;
     
