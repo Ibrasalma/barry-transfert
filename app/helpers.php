@@ -1,7 +1,7 @@
 <?php
   
-function changeDateFormate($date,$date_format){
-    return \Carbon\Carbon::createFromFormat('Y-m-d', $date)->format($date_format);    
+function changeDateFormate($date){
+    return Carbon\Carbon::createFromFormat('Y-m-d', $date)->toDateString();   
 }
    
 function depotImagePath($image_name)

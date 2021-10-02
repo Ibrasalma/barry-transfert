@@ -11,7 +11,7 @@ use App\Models\Versement;
 class Depot extends Model
 {
     use HasFactory;
-    protected $guarded = ['id', 'created_at'];
+    protected $guarded = ['id'];
 
     public function client(){
         return $this->belongsTo(Client::class);

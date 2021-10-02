@@ -82,7 +82,7 @@ class Versement extends Component
                 'montant_versee' => $this->montant,
                 'total_versee' => $montant_total_versee,
                 'reste' => $montant_restant,
-                'created_at' => !empty($this->old_date) ? $this->old_date : date($this->created_at),
+                'created_at' => !empty($this->old_date) ? $this->old_date : changeDateFormate($this->created_at),
                 'notification' => !empty($this->old_picture) ? $this->old_picture : $this->photo_name,
                 'moyen_versement' => $this->moyen_payement,
                 'detail' => $this->detail,

@@ -80,7 +80,7 @@ class Depot extends Component
             'code_depot' => $this->first_part.''.$this->the_date,
             'montant' => $this->montant,
             'montant_rmb' => !empty($this->taux) ? $this->montant * $this->taux : $this->montant * 6.4,
-            'created_at' => !empty($this->old_date) ? $this->old_date : changeDateFormate($this->created_at,'yyyy-mm-dd'),
+            'created_at' => !empty($this->old_date) ? $this->old_date : changeDateFormate($this->created_at),
             'recu' => !empty($this->old_picture) ? $this->old_picture : $this->photo,
             'detail' => $this->detail,
         ]);

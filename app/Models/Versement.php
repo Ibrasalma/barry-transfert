@@ -10,7 +10,7 @@ class Versement extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id', 'created_at'];
+    protected $guarded = ['id'];
 
     public function depot(){
         return $this->belongsTo(Depot::class);

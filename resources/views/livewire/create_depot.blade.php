@@ -61,11 +61,7 @@
                             <input 
                                 wire:model="created_at"
                                 type="date" 
-                                placeholder="Date de depot" 
-                                autocomplete="off"
-                                data-provide="datepicker" data-date-autoclose="true" 
-                                data-date-format="yyyy/dd/mm" data-date-today-highlight="true"                        
-                                onchange="this.dispatchEvent(new InputEvent('input'))"
+                                placeholder="Date de depot"   
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             >      
                             @error('created_at') <span class="text-red-500">{{ $message }}</span>@enderror

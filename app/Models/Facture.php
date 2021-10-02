@@ -9,7 +9,7 @@ use App\Models\Compte;
 class Facture extends Model
 {
     use HasFactory;
-    protected $guarded = ['id', 'created_at'];
+    protected $guarded = ['id'];
 
     public function compte(){
         return belongsTo(Compte::class);
