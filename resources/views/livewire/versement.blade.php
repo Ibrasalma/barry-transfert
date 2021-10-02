@@ -50,7 +50,7 @@
                         <td class="border px-4 py-2">{{ $versement->moyen_versement}}</td>
                         <td class="border px-4 py-2"><img src="{{ URL::asset('/photos/depots/hohai.jpg') }}"></td>
                         <td class="border px-4 py-2">{{ $versement->detail}}</td>
-                        <td class="border px-4 py-2">{{ $versement->created_at}}</td>
+                        <td class="border px-4 py-2">{{ date($versement->created_at) }}</td>
                         <td class="px-4 py-2 text-right text-sm">
                             <x-jet-button wire:click="edit({{ $versement->id }})">
                                 {{ __('Update') }}

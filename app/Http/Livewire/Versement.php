@@ -82,7 +82,7 @@ class Versement extends Component
                 'montant_versee' => $this->montant,
                 'total_versee' => $montant_total_versee,
                 'reste' => $montant_restant,
-                'created_at' => !empty($this->old_date) ? $this->old_date : changeDateFormate($this->created_at,'yyyy-mm-dd'),
+                'created_at' => !empty($this->old_date) ? $this->old_date : date($this->created_at),
                 'notification' => !empty($this->old_picture) ? $this->old_picture : $this->photo_name,
                 'moyen_versement' => $this->moyen_payement,
                 'detail' => $this->detail,
@@ -91,9 +91,9 @@ class Versement extends Component
             if($montant_restant == 0){
                 Depot::where('id', $this->depot_id)->update(['statut' => 'payé']);
                 $message_update = 'Statut du dépôt mis à jour à payé';
-                session()->flash('message', $this->versement_id ? 'Client modifié | '.$message_update : 'Client crée | '.$message_update);
+                session()->flash('message', $this->versement_id ? 'Versement modifié | '.$message_update : 'Versement crée | '.$message_update);
             }else{
-                session()->flash('message', $this->versement_id ? 'Client modifié.' : 'Client crée.');
+                session()->flash('message', $this->versement_id ? 'Versement modifié.' : 'Versement crée.'.$this->created_at);
             }
         }
         
