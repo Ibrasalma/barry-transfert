@@ -128,13 +128,13 @@
                                     {{ 'Gestion des archives' }}
                                 </div>
 
-                                <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                <x-jet-dropdown-link href="{{ route('archive_payements') }}">
                                     {{ 'Transferts' }}
                                 </x-jet-dropdown-link>
 
                                 <div class="border-t border-gray-100"></div>
 
-                                <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                <x-jet-dropdown-link href="{{ route('archive_versements') }}">
                                     {{ 'Versements' }}
                                 </x-jet-dropdown-link>
                             </x-slot>

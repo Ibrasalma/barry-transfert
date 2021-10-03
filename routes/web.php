@@ -11,6 +11,8 @@ use App\Http\Livewire\TransfertNotPayed;
 use App\Http\Livewire\Payment;
 use App\Http\Livewire\VersementPayed;
 use App\Http\Livewire\VersementNotPayed;
+use App\Http\Livewire\ArchiveVersement;
+use App\Http\Livewire\ArchivePayement;
 use App\Http\Controllers\Depot as DepotController;
 
 /*
@@ -56,3 +58,5 @@ Route::get('payements', Payment::class)->name('payements');
 
 Route::get('transferts_paid', TransfertPayed::class)->name('transferts_paid');
 Route::get('transferts_not_paid', TransfertNotPayed::class)->name('transferts_not_paid');
+Route::get('archive_versements', ArchiveVersement::class)->name('archive_versements');
+Route::get('archive_payements', ArchivePayement::class)->name('archive_payements');
