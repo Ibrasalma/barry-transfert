@@ -4,9 +4,9 @@ function changeDateFormate($date){
     return Carbon\Carbon::createFromFormat('Y-m-d', $date)->toDateString();   
 }
    
-function depotImagePath($image_name)
+function imagePath($dossier,$image_name)
 {
-    return public_path('photos/depots/'.$image_name);
+    return 'images/'.$dossier.'/'.$image_name;
 }
 
 function validateImage(){

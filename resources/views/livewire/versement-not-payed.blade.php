@@ -14,7 +14,6 @@
                         <th class="px-4 py-2">Montant (RMB)</th>
                         <th class="px-4 py-2">Recepteur</th>
                         <th class="px-4 py-2">Statut</th>
-                        <th class="px-4 py-2">Reçu</th>
                         <th class="px-4 py-2">Details</th>
                         <th class="px-4 py-2">Date de dépôt</th>
                         <th class="px-4 py-2">Action</th>
@@ -33,7 +32,6 @@
                         <td class="border px-4 py-2">{{ $depot->montant_rmb}}</td>
                         <td class="border px-4 py-2">{{ $depot->recepteur}}</td>
                         <td class="border px-4 py-2">{{ $depot->statut}}</td>
-                        <td class="border px-4 py-2"><img src="{{ URL::asset('/photos/depots/hohai.jpg') }}"></td>
                         <td class="border px-4 py-2">{{ $depot->detail}}</td>
                         <td class="border px-4 py-2">{{ $depot->created_at}}</td>
                     </tr>

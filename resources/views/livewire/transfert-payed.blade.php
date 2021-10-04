@@ -1,5 +1,5 @@
 <x-slot name="header">
-    <h2 class="text-center">Liste des dépôts d'argent déjà payés</h2>
+    <h2 class="text-center">Liste des factures payées</h2>
 </x-slot>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -28,7 +28,7 @@
                         <td class="border px-4 py-2">{{ $transfert->numero_facture}}</td>
                         <td class="border px-4 py-2">{{ $transfert->montant_rmb}}</td>
                         <td class="border px-4 py-2">{{ $transfert->statut}}</td>
-                        <td class="border px-4 py-2"><img src="{{ URL::asset('/photos/transferts/hohai.jpg') }}"></td>
+                        <td class="border px-4 py-2"><img src="{{ url(imagePath('factures',$transfert->photo)) }}"></td>
                         <td class="border px-4 py-2">{{ $transfert->detail}}</td>
                         <td class="border px-4 py-2">{{ $transfert->created_at}}</td>
                     </tr>

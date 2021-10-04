@@ -48,15 +48,15 @@
                         <td class="border px-4 py-2">{{ $versement->total_versee}}</td>
                         <td class="border px-4 py-2">{{ $versement->reste}}</td>
                         <td class="border px-4 py-2">{{ $versement->moyen_versement}}</td>
-                        <td class="border px-4 py-2"><img src="{{ URL::asset('/photos/depots/hohai.jpg') }}"></td>
+                        <td class="border px-4 py-2"><img src="{{ url(imagePath('versements',$versement->notification)) }}"></td>
                         <td class="border px-4 py-2">{{ $versement->detail}}</td>
                         <td class="border px-4 py-2">{{ date($versement->created_at) }}</td>
                         <td class="px-4 py-2 text-right text-sm">
                             <x-jet-button wire:click="edit({{ $versement->id }})">
-                                {{ __('Update') }}
+                                {{ __('Modifier') }}
                             </x-jet-button>
                             <x-jet-danger-button wire:click="delete({{ $versement->id }})">
-                                {{ __('Delete') }}
+                                {{ __('Suprimer') }}
                             </x-jet-button>
                         </td>
                     </tr>

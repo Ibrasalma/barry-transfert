@@ -1,5 +1,5 @@
 <x-slot name="header">
-    <h2 class="text-center">Gestion des clients</h2>
+    <h2 class="text-center">Gestion des comptes</h2>
 </x-slot>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -17,7 +17,7 @@
             @endif
             <button wire:click="create()"
                 class="my-4 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base font-bold text-white shadow-sm hover:bg-red-700">
-                Enregistrer un nouveau client
+                Enregistrer un nouveau compte
             </button>
             @if($isModalOpen)
             @include('livewire.create_compte')
@@ -44,15 +44,15 @@
                         <td class="border px-4 py-2">{{ $compte->telephone}}</td>
                         <td class="border px-4 py-2">{{ $compte->wechat_id}}</td>
                         <td class="border px-4 py-2">{{ $compte->compte_bancaire}}</td>
-                        <td class="border px-4 py-2">{{ $compte->qr_wechat}}</td>
-                        <td class="border px-4 py-2">{{ $compte->qr_alipay}}</td>
+                        <td class="border px-4 py-2"><img src="{{ url(imagePath('comptes',$compte->qr_wechat)) }}"></td>
+                        <td class="border px-4 py-2"><img src="{{ url(imagePath('comptes',$compte->qr_alipay)) }}"></td>
                         <td class="border px-4 py-2">{{ $compte->created_at}}</td>
                         <td class="px-4 py-2 text-right text-sm">
                             <x-jet-button wire:click="edit({{ $compte->id }})">
-                                {{ __('Update') }}
+                                {{ __('Modifier') }}
                             </x-jet-button>
                             <x-jet-danger-button wire:click="delete({{ $compte->id }})">
-                                {{ __('Delete') }}
+                                {{ __('Suprimer') }}
                             </x-jet-button>
                         </td>
                     </tr>

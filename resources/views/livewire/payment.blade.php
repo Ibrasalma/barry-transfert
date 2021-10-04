@@ -1,5 +1,5 @@
 <x-slot name="header">
-    <h2 class="text-center">Gestion des dépôt d'argent</h2>
+    <h2 class="text-center">Gestion des payements de facture</h2>
 </x-slot>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -48,15 +48,15 @@
                         <td class="border px-4 py-2">{{ $payement->total_versee}}</td>
                         <td class="border px-4 py-2">{{ $payement->reste}}</td>
                         <td class="border px-4 py-2">{{ $payement->moyen_versement}}</td>
-                        <td class="border px-4 py-2"><img src="{{ URL::asset('/photos/depots/hohai.jpg') }}"></td>
+                        <td class="border px-4 py-2"><img src="{{ url(imagePath('payments',$payement->notification)) }}"></td>
                         <td class="border px-4 py-2">{{ $payement->detail}}</td>
                         <td class="border px-4 py-2">{{ $payement->created_at}}</td>
                         <td class="px-4 py-2 text-right text-sm">
                             <x-jet-button wire:click="edit({{ $payement->id }})">
-                                {{ __('Update') }}
+                                {{ __('Modifier') }}
                             </x-jet-button>
                             <x-jet-danger-button wire:click="delete({{ $payement->id }})">
-                                {{ __('Delete') }}
+                                {{ __('Suprimer') }}
                             </x-jet-button>
                         </td>
                     </tr>

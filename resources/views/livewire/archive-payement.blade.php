@@ -1,5 +1,5 @@
 <x-slot name="header">
-    <h2 class="text-center">Liste des dépôts d'argent déjà payés</h2>
+    <h2 class="text-center">Archives des factures payées du jour</h2>
 </x-slot>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

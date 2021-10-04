@@ -29,6 +29,7 @@
                         <th class="px-4 py-2">Nom complet</th>
                         <th class="px-4 py-2">Adresse</th>
                         <th class="px-4 py-2">Telephone</th>
+                        <th class="px-4 py-2">Photo</th>
                         <th class="px-4 py-2">Action</th>
                     </tr>
                 </thead>
@@ -39,12 +40,13 @@
                         <td class="border px-4 py-2">{{ $student->name }}</td>
                         <td class="border px-4 py-2">{{ $student->email}}</td>
                         <td class="border px-4 py-2">{{ $student->mobile}}</td>
+                        <td class="border px-4 py-2"><img src="{{ url(imagePath('clients',$student->photo)) }}"></td>
                         <td class="px-4 py-2 text-right text-sm">
                             <x-jet-button wire:click="edit({{ $student->id }})">
-                                {{ __('Update') }}
+                                {{ __('Modifier') }}
                             </x-jet-button>
                             <x-jet-danger-button wire:click="delete({{ $student->id }})">
-                                {{ __('Delete') }}
+                                {{ __('Suprimer') }}
                             </x-jet-button>
                         </td>
                     </tr>
