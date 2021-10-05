@@ -9,7 +9,7 @@ use Livewire\WithFileUploads;
 class Crud extends Component
 {
     use WithFileUploads;
-    public $students, $old_picture, $name, $email, $mobile, $student_id, $photo, $modelId;
+    public $students, $old_picture, $name, $email, $mobile, $student_id, $photo, $modelId, $photo_name;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
 
@@ -51,7 +51,8 @@ class Crud extends Component
             'photo' => empty($this->student_id) ? validateImage() : '',
         ]);
         if(!empty($this->photo)){
-            $this->photo->storeAs('public/photos/clients', $this->photo->getClientOriginalName());
+            $this->photo_name = $this->photo->getClientOriginalName();
+            $this->photo->storeAs('clients', $this->photo_name);
         }
         if(!empty($this->student_id)){
             $old_values = Student::findOrFail($this->student_id);
@@ -61,14 +62,13 @@ class Crud extends Component
             'name' => $this->name,
             'email' => $this->email,
             'mobile' => $this->mobile,
-            'photo' => !empty($this->old_picture) ? $this->old_picture : $this->photo,
+            'photo' => !empty($this->old_picture) ? $this->old_picture : $this->photo_name
         ]);
 
         session()->flash('message', $this->student_id ? 'Client modifié.' : 'Client crée.');
 
         $this->closeModalPopover();
         $this->resetCreateForm();
-        #$this->photo->store('photos');
     }
 
     public function edit($id)

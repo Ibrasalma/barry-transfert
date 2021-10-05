@@ -57,7 +57,7 @@ class Facture extends Component
         ]);
 
         if(!empty($this->photo)){
-            $this->photo->storeAs('public/photos/factures', $this->photo->getClientOriginalName());
+            $this->photo->storeAs('factures', $this->photo->getClientOriginalName());
         }
 
         if(!empty($this->facture_id)){
@@ -71,7 +71,7 @@ class Facture extends Component
             'numero_facture' => $this->numero_facture,
             'montant_rmb' => $this->montant,
             'created_at' => !empty($this->old_date) ? $this->old_date : changeDateFormate($this->created_at,'yyyy-mm-dd'),
-            'photo' => !empty($this->old_picture) ? $this->old_picture : $this->photo,
+            'photo' => !empty($this->old_picture) ? $this->old_picture : $this->photo->getClientOriginalName(),
             'detail' => $this->detail,
         ]);
 

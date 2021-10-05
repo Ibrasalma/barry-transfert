@@ -57,7 +57,7 @@ class Payment extends Component
         ]);
 
         if(!empty($this->photo)){
-            $this->photo->storeAs('public/photos/payments', $this->photo->getClientOriginalName());
+            $this->photo->storeAs('payments', $this->photo->getClientOriginalName());
         }
 
         if(!empty($this->payment_id)){

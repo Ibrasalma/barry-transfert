@@ -61,7 +61,7 @@ class Depot extends Component
         ]);
 
         if(!empty($this->photo)){
-            $this->photo->storeAs('public/photos/depots', $this->photo->getClientOriginalName());
+            $this->photo->storeAs('depots', $this->photo->getClientOriginalName());
         }
 
         $this->first_part = substr($this->name, 0, strpos($this->name, ' '));
@@ -81,7 +81,7 @@ class Depot extends Component
             'montant' => $this->montant,
             'montant_rmb' => !empty($this->taux) ? $this->montant * $this->taux : $this->montant * 6.4,
             'created_at' => !empty($this->old_date) ? $this->old_date : changeDateFormate($this->created_at),
-            'recu' => !empty($this->old_picture) ? $this->old_picture : $this->photo,
+            'recu' => !empty($this->old_picture) ? $this->old_picture : $this->photo->getClientOriginalName(),
             'detail' => $this->detail,
         ]);
 

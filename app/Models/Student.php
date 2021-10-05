@@ -12,7 +12,8 @@ class Student extends Model
     protected $fillable = [
         'name', 
         'email', 
-        'mobile'
+        'mobile',
+        'photo'
     ]; 
 
     public function depot(){

@@ -57,7 +57,7 @@ class Versement extends Component
 
         if(!empty($this->photo)){
             $this->photo_name = $this->photo->getClientOriginalName();
-            $this->photo->storeAs('public/photos/versements', $this->photo_name);
+            $this->photo->storeAs('versements', $this->photo_name);
         }
 
         if(!empty($this->versement_id)){

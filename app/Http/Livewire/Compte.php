@@ -9,7 +9,7 @@ use Livewire\WithFileUploads;
 class Compte extends Component
 {
     use WithFileUploads;
-    public $comptes, $qr_wechat, $name, $marque, $wechat_id, $compte_bancaire, $mobile, $compte_id, $qr_alipay, $old_alipay, $old_wechat, $modelId;
+    public $comptes, $qr_wechat, $name, $marque, $wechat_id, $compte_bancaire, $photo_alipay, $photo_wechat, $mobile, $compte_id, $qr_alipay, $old_alipay, $old_wechat, $modelId;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
 
@@ -55,10 +55,12 @@ class Compte extends Component
             'compte_bancaire' => 'max:11'
         ]);
         if(!empty($this->qr_alipay)){
-            $this->qr_alipay->storeAs('public/photos/comptes', $this->qr_alipay->getClientOriginalName());
+            $this->photo_alipay = $this->qr_alipay->getClientOriginalName();
+            $this->qr_alipay->storeAs('comptes', $this->photo_alipay);
         }
         if(!empty($this->qr_wechat)){
-            $this->qr_wechat->storeAs('public/photos/comptes', $this->qr_wechat->getClientOriginalName());
+            $this->photo_wechat = $this->qr_wechat->getClientOriginalName();
+            $this->qr_wechat->storeAs('comptes', $this->photo_wechat);
         }
         if(!empty($this->compte_id)){
             $old_values = CompteModel::findOrFail($this->compte_id);
@@ -71,11 +73,11 @@ class Compte extends Component
             'telephone' => $this->mobile,
             'wechat_id' => $this->wechat_id,
             'compte_bancaire' => $this->compte_bancaire,
-            'qr_wechat' => !empty($this->old_wechat) ? $this->old_wechat : $this->qr_wechat,
-            'qr_alipay' => !empty($this->old_alipay) ? $this->old_alipay : $this->qr_alipay,
+            'qr_wechat' => !empty($this->old_wechat) ? $this->old_wechat : $this->photo_wechat,
+            'qr_alipay' => !empty($this->old_alipay) ? $this->old_alipay : $this->photo_alipay,
         ]);
 
-        session()->flash('message', $this->compte_id ? 'Client modifié.' : 'Client crée.');
+        session()->flash('message', $this->compte_id ? 'Client modifié.' : 'Client crée.' );
 
         $this->closeModalPopover();
         $this->resetCreateForm();
