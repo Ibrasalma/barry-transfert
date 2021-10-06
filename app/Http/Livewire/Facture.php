@@ -9,9 +9,10 @@ use Livewire\WithFileUploads;
 
 class Facture extends Component
 {
-    public $factures, $old_date, $old_picture, $les_comptes, $compte_id , $facture_id, $numero_facture, $montant, $photo, $created_at, $modelId, $detail;
+    public $factures, $old_date, $old_picture, $delete_id, $les_comptes, $compte_id , $facture_id, $numero_facture, $montant, $photo, $created_at, $modelId, $detail;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
+    public $isDeleteModalOpen = 0;
     use WithFileUploads;
 
     public function render()
@@ -27,6 +28,17 @@ class Facture extends Component
         $this->openModalPopover();
     }
 
+    public function suprimer($id)
+    {
+        $this->delete_id = $id;
+        $this->openDeleteModalPopover();
+    }
+
+    public function openDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = true;
+    }
+
     public function openModalPopover()
     {
         $this->isModalOpen = true;
@@ -35,6 +47,11 @@ class Facture extends Component
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
+    }
+
+    public function closeDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = false;
     }
 
     private function resetCreateForm(){
@@ -98,6 +115,7 @@ class Facture extends Component
     public function delete($id)
     {
         AppFacture::find($id)->delete();
+        $this->closeDeleteModalPopover();
         session()->flash('message', 'Client supprimé.');
     }
 }

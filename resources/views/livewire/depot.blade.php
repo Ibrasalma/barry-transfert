@@ -3,7 +3,9 @@
 </x-slot>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+        @if($isDeleteModalOpen)
+        @include('livewire.delete_modal')
+        @endif
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
             @if (session()->has('message'))
             @include('livewire.session_message')
@@ -48,7 +50,7 @@
                             <x-jet-button wire:click="edit({{ $depot->id }})">
                                 {{ __('Modifier') }}
                             </x-jet-button>
-                            <x-jet-danger-button wire:click="delete({{ $depot->id }})">
+                            <x-jet-danger-button wire:click="suprimer({{ $depot->id }})">
                                 {{ __('Suprimer') }}
                             </x-jet-button>
                         </td>

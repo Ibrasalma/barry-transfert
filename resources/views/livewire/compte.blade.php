@@ -3,7 +3,9 @@
 </x-slot>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+        @if($isDeleteModalOpen)
+        @include('livewire.delete_modal')
+        @endif
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
             @if (session()->has('message'))
             @include('livewire.session_message')
@@ -44,7 +46,7 @@
                             <x-jet-button wire:click="edit({{ $compte->id }})">
                                 {{ __('Modifier') }}
                             </x-jet-button>
-                            <x-jet-danger-button wire:click="delete({{ $compte->id }})">
+                            <x-jet-danger-button wire:click="suprimer({{ $compte->id }})">
                                 {{ __('Suprimer') }}
                             </x-jet-button>
                         </td>
@@ -54,25 +56,4 @@
             </table>
         </div>
     </div>
-    {{-- The Delete Modal --}}
-
-    <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">
-        <x-slot name="title">
-            {{ __('Delete Page') }}
-        </x-slot>
-
-        <x-slot name="content">
-            {{ __('Are you sure you want to delete this page? Once the page is deleted, all of its resources and data will be permanently deleted.') }}
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('modalConfirmDeleteVisible')" wire:loading.attr="disabled">
-                {{ __('Nevermind') }}
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
-                {{ __('Delete Page') }}
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-dialog-modal>
 </div>

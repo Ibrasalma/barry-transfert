@@ -10,9 +10,10 @@ use Livewire\WithFileUploads;
 class Payment extends Component
 {
     use WithFileUploads;
-    public $payments,$old_date, $payment_id, $old_picture, $les_factures, $facture_id , $montant, $moyen_payement, $photo, $created_at, $modelId, $detail;
+    public $payments,$old_date, $payment_id, $delete_id, $old_picture, $les_factures, $facture_id , $montant, $moyen_payement, $photo, $created_at, $modelId, $detail;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
+    public $isDeleteModalOpen = 0;
 
     public function render()
     {
@@ -26,6 +27,16 @@ class Payment extends Component
         $this->resetCreateForm();
         $this->openModalPopover();
     }
+    public function suprimer($id)
+    {
+        $this->delete_id = $id;
+        $this->openDeleteModalPopover();
+    }
+
+    public function openDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = true;
+    }
 
     public function openModalPopover()
     {
@@ -35,6 +46,11 @@ class Payment extends Component
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
+    }
+
+    public function closeDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = false;
     }
 
     private function resetCreateForm(){
@@ -117,6 +133,7 @@ class Payment extends Component
     public function delete($id)
     {
         Payement::find($id)->delete();
+        $this->closeDeleteModalPopover();
         session()->flash('message', 'Client supprimé.');
     }
 }

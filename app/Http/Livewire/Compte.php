@@ -9,9 +9,10 @@ use Livewire\WithFileUploads;
 class Compte extends Component
 {
     use WithFileUploads;
-    public $comptes, $qr_wechat, $name, $marque, $wechat_id, $compte_bancaire, $photo_alipay, $photo_wechat, $mobile, $compte_id, $qr_alipay, $old_alipay, $old_wechat, $modelId;
+    public $comptes, $qr_wechat, $name, $marque, $wechat_id, $compte_bancaire, $photo_alipay, $photo_wechat, $mobile, $compte_id, $qr_alipay, $old_alipay, $old_wechat, $modelId, $delete_id;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
+    public $isDeleteModalOpen = 0;
 
     public function render()
     {
@@ -25,9 +26,20 @@ class Compte extends Component
         $this->openModalPopover();
     }
 
+    public function suprimer($id)
+    {
+        $this->delete_id = $id;
+        $this->openDeleteModalPopover();
+    }
+
     public function openModalPopover()
     {
         $this->isModalOpen = true;
+    }
+
+    public function openDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = true;
     }
 
     public function closeModalPopover()
@@ -35,6 +47,10 @@ class Compte extends Component
         $this->isModalOpen = false;
     }
 
+    public function closeDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = false;
+    }
     private function resetCreateForm(){
         $this->name = '';
         $this->marque = '';
@@ -99,6 +115,7 @@ class Compte extends Component
     public function delete($id)
     {
         CompteModel::find($id)->delete();
+        $this->closeDeleteModalPopover();
         session()->flash('message', 'Client supprimé.');
     }
 

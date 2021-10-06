@@ -9,9 +9,10 @@ use Livewire\WithFileUploads;
 class Crud extends Component
 {
     use WithFileUploads;
-    public $students, $old_picture, $name, $email, $mobile, $student_id, $photo, $modelId, $photo_name;
+    public $students, $old_picture, $name, $email, $mobile, $student_id, $photo, $modelId, $photo_name, $delete_id;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
+    public $isDeleteModalOpen = 0;
 
     public function render()
     {
@@ -25,6 +26,17 @@ class Crud extends Component
         $this->openModalPopover();
     }
 
+    public function suprimer($id)
+    {
+        $this->delete_id = $id;
+        $this->openDeleteModalPopover();
+    }
+
+    public function openDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = true;
+    }
+
     public function openModalPopover()
     {
         $this->isModalOpen = true;
@@ -33,6 +45,11 @@ class Crud extends Component
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
+    }
+
+    public function closeDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = false;
     }
 
     private function resetCreateForm(){
@@ -85,6 +102,7 @@ class Crud extends Component
     public function delete($id)
     {
         Student::find($id)->delete();
+        $this->closeDeleteModalPopover();
         session()->flash('message', 'Client supprimé.');
     }
 

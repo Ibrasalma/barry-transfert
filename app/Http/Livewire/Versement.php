@@ -10,9 +10,10 @@ use Livewire\WithFileUploads;
 class Versement extends Component
 {
     use WithFileUploads;
-    public $versements,$old_date, $versement_id, $old_picture, $les_depots, $depot_id , $montant, $moyen_payement, $photo, $photo_name, $created_at, $modelId, $detail;
+    public $versements,$old_date, $versement_id, $old_picture, $delete_id, $les_depots, $depot_id , $montant, $moyen_payement, $photo, $photo_name, $created_at, $modelId, $detail;
     public $modalConfirmDeleteVisible = false;
     public $isModalOpen = 0;
+    public $isDeleteModalOpen = 0;
     
     public function render()
     {
@@ -26,6 +27,17 @@ class Versement extends Component
         $this->openModalPopover();
     }
 
+    public function suprimer($id)
+    {
+        $this->delete_id = $id;
+        $this->openDeleteModalPopover();
+    }
+
+    public function openDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = true;
+    }
+
     public function openModalPopover()
     {
         $this->isModalOpen = true;
@@ -34,6 +46,11 @@ class Versement extends Component
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
+    }
+
+    public function closeDeleteModalPopover()
+    {
+        $this->isDeleteModalOpen = false;
     }
 
     private function resetCreateForm(){
@@ -117,6 +134,7 @@ class Versement extends Component
     public function delete($id)
     {
         AppVersement::find($id)->delete();
+        $this->closeDeleteModalPopover();
         session()->flash('message', 'Client supprimé.');
     }
 }
